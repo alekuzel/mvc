@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MvcLab.Models;
 
 namespace MvcLab.Controllers
 {
@@ -22,6 +23,21 @@ namespace MvcLab.Controllers
         {
             return View();
         }
+
+          [Route("/katter")] // Route for the Cats action method
+          [HttpPost]
+        public IActionResult Cats(CatsModel model)
+        {
+            //validate input
+            if(ModelState.IsValid){
+
+            }
+            else{
+                
+            }
+            return View();
+        }
+
 
         
     }
