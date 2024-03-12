@@ -1,33 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home</title>
+    <title>@ViewData["title"] | MVC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .headerContainer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        header {
+            background-color: #444;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        header nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        header nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .container {
+            margin: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-   <div class="headerContainer"
-        <h1>Home</h1>
-        <p>Hej och välkommen till min sida om katter!</p>
+    
+    
     <header>
-    <h1>Home</h1>
-  <nav>
-    <ul>
-    <li><a href="#">Om sidan</a></li>
-    <li><a href="#">Katter</a></li>
-    </ul>
-    </nav>
-</header>
-</div>
-   
- <div class="container">
-    <main>
-        @RenderBody()
-    </main>
-
+        <nav>
+            <ul>
+                <li><a href="#">Om sidan</a></li>
+                <li><a href="#">Katter</a></li>
+            </ul>
+        </nav>
+    </header>
+<div class="headerContainer">
+        <h2>Hej och välkommen till min sida om katter!</h2>
+    
     </div>
+    <div class="container">
+        <main>
+              @RenderBody()
+        </main>
+    </div>
+
     <footer>
         Aleksandra Kuzeleva
     </footer>
-
-    </body>
-
+</body>
 </html>
