@@ -1,6 +1,19 @@
+@model MvcLab.Models.CatsModel;
+
 @{
  ViewData["title"] = "Katter";
  Layout = "_Layout";
 }
 
 <h2>Katter</h2>
+
+<p>Lägga till nya katter här:</p>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    
+    </form>

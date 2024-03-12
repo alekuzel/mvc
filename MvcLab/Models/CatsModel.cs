@@ -1,6 +1,6 @@
 namespace MvcLab.Models;
 
-public class CatModel {
+public class CatsModel {
     //properties
     public string? Name { get; set; }
 
