@@ -9,20 +9,20 @@ namespace MvcLab.Controllers
             return View();
         }
 
-      
 
+        [Route("/omoss")] // Route for the About action method
+        [Route("/about")] // Alternate route for the About action method
         public IActionResult About()
         {
             return View();
         }
-         [Route("/omoss")]
 
+        [Route("/katter")] // Route for the Cats action method
         public IActionResult Cats()
         {
             return View();
         }
-          [Route("/katter")]
 
-
+        
     }
 }
