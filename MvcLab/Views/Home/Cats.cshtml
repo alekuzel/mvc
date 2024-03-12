@@ -10,17 +10,22 @@
 <p>Lägga till nya katter här:</p>
 
 <form method="post">
-    <div class="form-group">
+    <div asp-validation-summary="ModelOnly"></div>
+    
         <label asp-for="Name"></label><br>
-        <input asp-for="Name" class="form-control" /><br>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" style="color:red;"></span><br>
         <label asp-for="Breed"></label><br>
-        <input asp-for="Breed" class="form-control" /><br>
+        <input asp-for="Breed" class="form-control" />
+        <span asp-validation-for="Breed" style="color:red;"></span><br>
         <label asp-for="Color"></label><br>
-        <input asp-for="Color" class="form-control" /><br>
+        <input asp-for="Color" class="form-control" />
+        <span asp-validation-for="Color" style="color:red;"></span><br>
         <label asp-for="Age"></label><br>
-        <input asp-for="Age" class="form-control" /><br>
+        <input asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" style="color:red;"></span><br>
         <input type="submit" value="Lägg till" class="btn" />
     
-    </div>
+   
     
     </form>
