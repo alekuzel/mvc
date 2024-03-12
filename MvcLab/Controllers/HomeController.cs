@@ -1,5 +1,9 @@
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using MvcLab.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.IO;
 
 namespace MvcLab.Controllers
 {
@@ -10,35 +14,60 @@ namespace MvcLab.Controllers
             return View();
         }
 
-
-        [Route("/omoss")] // Route for the About action method
-        [Route("/about")] // same routes name in english. both will lead to the same destination
+        [Route("/omoss")]
+        [Route("/about")]
         public IActionResult About()
         {
             return View();
         }
 
-        [Route("/katter")] // Route for the Cats action method
+        [Route("/katter")]
         public IActionResult Cats()
         {
             return View();
         }
 
-          [Route("/katter")] // Route for the Cats action method
-          [HttpPost]
-        public IActionResult Cats(CatsModel model)
+        [Route("/katter/add")]
+        [HttpPost]
+        public async Task<IActionResult> AddCat(CatsModel model)
         {
-            //validate input
-            if(ModelState.IsValid){
+            if (ModelState.IsValid)
+            {
+                string jsonStr;
+                try
+                {
+                    jsonStr = await System.IO.File.ReadAllTextAsync("cats.json");
+                }
+                catch (IOException)
+                {
+                    // Handle error
+                    return View("Error");
+                }
 
+                var cats = JsonSerializer.Deserialize<List<CatsModel>>(jsonStr);
+
+                if (cats != null)
+                {
+                    cats.Add(model);
+                    jsonStr = JsonSerializer.Serialize(cats);
+                    try
+                    {
+                        await System.IO.File.WriteAllTextAsync("cats.json", jsonStr);
+                    }
+                    catch (IOException)
+                    {
+                        // Handle error
+                        return View("Error");
+                    }
+                }
             }
-            else{
-                
+            else
+            {
+                // Handle validation error
+                return View("Error");
             }
-            return View();
+
+            return View("Cats");
         }
-
-
-        
     }
 }

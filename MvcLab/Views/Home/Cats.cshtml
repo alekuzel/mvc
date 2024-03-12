@@ -9,7 +9,7 @@
 
 <p>Lägga till nya katter här:</p>
 
-<form method="post">
+<form asp-controller="Home" asp-action="AddCat" method="post">
     <div asp-validation-summary="ModelOnly"></div>
     
         <label asp-for="Name"></label><br>
