@@ -9,15 +9,19 @@ namespace MvcLab.Controllers
             return View();
         }
 
+      
+
         public IActionResult About()
         {
             return View();
         }
+         [Route("/omoss")]
 
         public IActionResult Cats()
         {
             return View();
         }
+          [Route("/katter")]
 
 
     }
