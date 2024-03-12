@@ -1,10 +1,10 @@
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews();   //activate MVC
 
 var app = builder.Build();
 
-app.UseStaticFiles();
-app.UseRouting();
+app.UseStaticFiles();     //wwwroot
+app.UseRouting();       //routing
 
 //Routing
 app.MapControllerRoute(
@@ -13,7 +13,3 @@ app.MapControllerRoute(
 
 app.Run();
 
-/*
-DO THIS
-
-https://play.miun.se/media/DT191G/0_l609gw7v*/
