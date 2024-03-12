@@ -11,7 +11,7 @@ namespace MvcLab.Controllers
 
 
         [Route("/omoss")] // Route for the About action method
-        [Route("/about")] // same route in english. both will lead to the same destination
+        [Route("/about")] // same routes name in english. both will lead to the same destination
         public IActionResult About()
         {
             return View();
