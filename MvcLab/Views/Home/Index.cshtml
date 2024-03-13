@@ -1,6 +1,36 @@
+@model List<MvcLab.Models.CatsModel>
 @{
   ViewData["title"] = "Startsidan";
   Layout = "_Layout";
 }
 
+<!-- styles -->
+
 <h2>Startsidan</h2>
+<h3>Nu finns det följande katter här:</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Breed</th>
+      <th>Color</th>
+      <th>Age</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var cat in Model)
+    {
+      <tr>
+        <td>@cat.Name</td>
+        <td>@cat.Breed</td>
+        <td>@cat.Color</td>
+        <td>@cat.Age</td>
+        <td>
+          <a asp-controller="Home" asp-action="EditCat" asp-route-id="@cat.Id">Edit</a> |
+          <a asp-controller="Home" asp-action="DeleteCat" asp-route-id="@cat.Id">Delete</a>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

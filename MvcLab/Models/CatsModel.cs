@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations;
 namespace MvcLab.Models;
 
 public class CatsModel {
+
+    public int Id { get; set; }
     //properties
 
     [Required]

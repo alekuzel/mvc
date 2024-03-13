@@ -9,9 +9,59 @@ namespace MvcLab.Controllers
 {
     public class HomeController : Controller
     {
+
+        [HttpGet]
+    public IActionResult EditCat(int id)
+    {
+        // Load the cat from your data source using the id
+        var cat = new CatsModel(); // Replace this with your actual code
+
+        // Return a view with a form to edit the cat
+        return View(cat);
+    }
+
+    [HttpPost]
+    public IActionResult EditCat(int id, CatsModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            // Save the updated cat to your data source
+            // Replace this with your actual code
+
+            // Redirect to the cats list
+            return RedirectToAction("Index");
+        }
+
+        // If the model is not valid, return the form view with the current model to display validation errors
+        return View(model);
+    }
+
+     public IActionResult DeleteCat(int id)
+    {
+        // Load the cats from your data source
+        var cats = new List<CatsModel>(); // Replace this with your actual code
+
+        // Find the cat with the given id and remove it
+        var cat = cats.FirstOrDefault(c => c.Id == id);
+        if (cat != null)
+        {
+            cats.Remove(cat);
+
+            // Save the updated list of cats to your data source
+            // Replace this with your actual code
+        }
+
+        // Redirect to the cats list
+        return RedirectToAction("Index");
+    }
+
         public IActionResult Index()
         {
-            return View();
+
+            string jsonStr = System.IO.File.ReadAllText("cats.json");
+               
+             var cats = JsonSerializer.Deserialize<List<CatsModel>>(jsonStr);
+            return View(cats);
         }
 
         [Route("/omoss")]
@@ -22,6 +72,7 @@ namespace MvcLab.Controllers
         }
 
         [Route("/katter")]
+        [Route("/cats")]
         public IActionResult Cats()
         {
             return View();
@@ -60,6 +111,9 @@ namespace MvcLab.Controllers
                         return View("Error");
                     }
                 }
+                ModelState.Clear();
+
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -67,7 +121,7 @@ namespace MvcLab.Controllers
                 return View("Error");
             }
 
-            return View("Cats");
+            
         }
     }
 }
