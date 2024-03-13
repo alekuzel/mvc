@@ -3,9 +3,7 @@
   ViewData["title"] = "Startsidan";
   Layout = "_Layout";
 }
-
 <!-- styles -->
-
 <h2>Startsidan</h2>
 <h3>Nu finns det följande katter här:</h3>
 <table class="table">
@@ -21,16 +19,18 @@
   <tbody>
     @foreach (var cat in Model)
     {
-      <tr>
-        <td>@cat.Name</td>
-        <td>@cat.Breed</td>
-        <td>@cat.Color</td>
-        <td>@cat.Age</td>
-        <td>
-          <a asp-controller="Home" asp-action="EditCat" asp-route-id="@cat.Id">Edit</a> |
-          <a asp-controller="Home" asp-action="DeleteCat" asp-route-id="@cat.Id">Delete</a>
-        </td>
-      </tr>
+        <tr>
+            <td>@cat.Name</td>
+            <td>@cat.Breed</td>
+            <td>@cat.Color</td>
+            <td>@cat.Age</td>
+            <td>
+                <a asp-controller="Home" asp-action="EditCat" asp-route-id="@cat.Id">Edit</a> |
+                <form asp-controller="Home" asp-action="DeleteCat" asp-route-id="@cat.Id" method="post" style="display:inline;">
+                    <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this cat?');" />
+                </form>
+            </td>
+        </tr>
     }
   </tbody>
 </table>

@@ -36,24 +36,35 @@ namespace MvcLab.Controllers
         return View(model);
     }
 
-     public IActionResult DeleteCat(int id)
+    private List<CatsModel> GetCatsFromJsonFile()
+{
+    string jsonStr = System.IO.File.ReadAllText("cats.json");
+    return JsonSerializer.Deserialize<List<CatsModel>>(jsonStr);
+}
+
+private void SaveCatsToJsonFile(List<CatsModel> cats)
+{
+    string jsonStr = JsonSerializer.Serialize(cats);
+    System.IO.File.WriteAllText("cats.json", jsonStr);
+}
+
+public IActionResult DeleteCat(int id)
+{
+    var cats = GetCatsFromJsonFile();
+    var cat = cats.FirstOrDefault(c => c.Id == id);
+    if (cat != null)
     {
-        // Load the cats from your data source
-        var cats = new List<CatsModel>(); // Replace this with your actual code
-
-        // Find the cat with the given id and remove it
-        var cat = cats.FirstOrDefault(c => c.Id == id);
-        if (cat != null)
-        {
-            cats.Remove(cat);
-
-            // Save the updated list of cats to your data source
-            // Replace this with your actual code
-        }
-
-        // Redirect to the cats list
-        return RedirectToAction("Index");
+        cats.Remove(cat);
+        SaveCatsToJsonFile(cats);
     }
+    else
+    {
+        // If the cat was not found, return an error view
+        return View("Error");
+    }
+
+    return RedirectToAction("Index");
+}
 
         public IActionResult Index()
         {
