@@ -11,30 +11,37 @@ namespace MvcLab.Controllers
     {
 
         [HttpGet]
-    public IActionResult EditCat(int id)
+   public IActionResult EditCat(int id)
+{
+    var cats = GetCatsFromJsonFile();
+    var cat = cats.FirstOrDefault(c => c.Id == id);
+    if (cat == null)
     {
-        // Load the cat from your data source using the id
-        var cat = new CatsModel(); // Replace this with your actual code
+        return View("Error");
+    }
+    return View(cat);
+}
 
-        // Return a view with a form to edit the cat
-        return View(cat);
+
+[HttpPost]
+public IActionResult EditCat(CatsModel model)
+{
+    var cats = GetCatsFromJsonFile();
+    var cat = cats.FirstOrDefault(c => c.Id == model.Id);
+    if (cat == null)
+    {
+        return View("Error");
     }
 
-    [HttpPost]
-    public IActionResult EditCat(int id, CatsModel model)
-    {
-        if (ModelState.IsValid)
-        {
-            // Save the updated cat to your data source
-            // Replace this with your actual code
+    cat.Name = model.Name;
+    cat.Breed = model.Breed;
+    cat.Color = model.Color;
+    cat.Age = model.Age;
 
-            // Redirect to the cats list
-            return RedirectToAction("Index");
-        }
+    SaveCatsToJsonFile(cats);
 
-        // If the model is not valid, return the form view with the current model to display validation errors
-        return View(model);
-    }
+    return RedirectToAction("Index");
+}
 
     private List<CatsModel> GetCatsFromJsonFile()
 {
@@ -72,6 +79,7 @@ public IActionResult DeleteCat(int id)
             string jsonStr = System.IO.File.ReadAllText("cats.json");
                
              var cats = JsonSerializer.Deserialize<List<CatsModel>>(jsonStr);
+             ViewBag.TotalCats = cats.Count; //counting all the cats
             return View(cats);
         }
 
