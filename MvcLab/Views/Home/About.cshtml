@@ -3,9 +3,33 @@
  Layout = "_Layout";
 }
 
-<h2>Om sidan</h2>
+<style>
+    #guessButton {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #2a842d;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
 
-<button id="guessButton">Guess the total number of cats</button>
+    #guessButton:hover {
+        background-color: #073009;
+    }
+
+    #aboutText {
+        margin-bottom: 20px;
+        width: 70vw;
+    }
+</style>
+
+<h2>Om sidan</h2>
+<div id="aboutText">
+<p>Välkommen till vår kattwebbplats där du kan registrera dina katter bara för att de är värda det. Om du någonsin har tänkt på att "Min katt är så fantastisk, de förtjänar att registreras någonstans" så är du på rätt plats!</p> 
+  <p>För att registrera ditt fluffiga undrar, gå till sidan Katter.</p>
+</div>
+<button id="guessButton">Gissa antalet katter</button>
+<br>
 <div id="message"></div>
 
 @section Scripts {
@@ -22,7 +46,7 @@
                     document.getElementById('guessButton').click();
                 } else {
                     // if the user clicks "Cancel", show the correct answer
-                    document.getElementById('message').textContent = 'Nu  ä det ' + totalCats + ' registrerade hos oss.';
+                    document.getElementById('message').textContent = 'Nu är det ' + totalCats + ' katter registrerade hos oss.';
                 }
             }
         });
