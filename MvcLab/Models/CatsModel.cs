@@ -17,7 +17,7 @@ public class CatsModel {
     [Display(Name = "Ras:")]
     public string? Breed { get; set; }
 
-    [Required]
+    [Required] 
      [MinLength(2)]
     [Display(Name = "Färg:")]
     public string? Color { get; set; }

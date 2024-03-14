@@ -1,6 +1,30 @@
 @{
  ViewData["title"] = "Om oss";
-  Layout = "_Layout";
+ Layout = "_Layout";
 }
 
 <h2>Om sidan</h2>
+
+<button id="guessButton">Guess the total number of cats</button>
+<div id="message"></div>
+
+@section Scripts {
+    <script>
+        var totalCats = @ViewBag.TotalCats; // get the total number of cats from ViewBag
+
+        document.getElementById('guessButton').addEventListener('click', function() {
+            var guess = prompt('Please enter your guess for the total number of cats:');
+            if (guess == totalCats) {
+                document.getElementById('message').textContent = 'Congratulations! Your guess is correct.';
+            } else {
+                if (confirm('Your guess is incorrect. Would you like to try again?')) {
+                    // if the user clicks "OK", trigger the button click event again
+                    document.getElementById('guessButton').click();
+                } else {
+                    // if the user clicks "Cancel", show the correct answer
+                    document.getElementById('message').textContent = 'The correct answer is ' + totalCats + '.';
+                }
+            }
+        });
+    </script>
+}
