@@ -13,16 +13,16 @@
         var totalCats = @ViewBag.TotalCats; // get the total number of cats from ViewBag
 
         document.getElementById('guessButton').addEventListener('click', function() {
-            var guess = prompt('Please enter your guess for the total number of cats:');
+            var guess = prompt('Försåk att gissa hur många katter är registrade hos oss nu:');
             if (guess == totalCats) {
-                document.getElementById('message').textContent = 'Congratulations! Your guess is correct.';
+                document.getElementById('message').textContent = 'Grattis! Ditt svar ät helt rätt!';
             } else {
-                if (confirm('Your guess is incorrect. Would you like to try again?')) {
+                if (confirm('Fel svar! Vill du försöka igen? Annars tryck Avbryt of se rätt svar')) {
                     // if the user clicks "OK", trigger the button click event again
                     document.getElementById('guessButton').click();
                 } else {
                     // if the user clicks "Cancel", show the correct answer
-                    document.getElementById('message').textContent = 'The correct answer is ' + totalCats + '.';
+                    document.getElementById('message').textContent = 'Nu  ä det ' + totalCats + ' registrerade hos oss.';
                 }
             }
         });

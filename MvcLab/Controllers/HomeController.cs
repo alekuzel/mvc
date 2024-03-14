@@ -85,9 +85,12 @@ public IActionResult DeleteCat(int id)
 
         [Route("/omoss")]
         [Route("/about")]
-        public IActionResult About()
-        {
-            return View();
+       public IActionResult About()
+       {
+        string jsonStr = System.IO.File.ReadAllText("cats.json");    
+        var cats = JsonSerializer.Deserialize<List<CatsModel>>(jsonStr);
+        ViewBag.TotalCats = cats.Count;
+        return View();
         }
 
         [Route("/katter")]
