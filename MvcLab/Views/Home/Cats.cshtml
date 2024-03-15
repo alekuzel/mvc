@@ -1,10 +1,11 @@
-@model MvcLab.Models.CatsModel; // Specifies the model for this view, which is CatsModel
+@model MvcLab.Models.CatsModel
 
 @{
- ViewData["title"] = "Katter"; // Sets the title of the view to "Katter"
- Layout = "_Layout"; // Specifies the layout page for this view, which is "_Layout"
+    ViewData["title"] = "Katter"; // Sets the title of the view to "Katter"
+    Layout = "_Layout"; // Specifies the layout page for this view, which is "_Layout"
 }
 
+<!-- CSS styles for the form and its elements -->
 <!-- CSS styles for the form and its elements -->
 <style>
      form {
@@ -48,10 +49,21 @@
 
 <p>Lägga till nya katter här:</p> <!-- Instruction for the user -->
 
+<!-- Validation summary for displaying errors -->
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+
 <!-- form for adding a new cat -->
 <form asp-controller="Home" asp-action="AddCat" method="post">
-    <div asp-validation-summary="ModelOnly"></div> <!-- validation summary for the form -->
-    
     <!--  the cat's name -->
     <label asp-for="Name"></label><br>
     <input asp-for="Name" class="form-control" />
