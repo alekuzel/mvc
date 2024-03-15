@@ -79,7 +79,7 @@ public IActionResult DeleteCat(int id)
             string jsonStr = System.IO.File.ReadAllText("cats.json");
                
              var cats = JsonSerializer.Deserialize<List<CatsModel>>(jsonStr);
-             ViewBag.TotalCats = cats.Count; //counting all the cats
+
             return View(cats);
         }
 

@@ -1,6 +1,6 @@
 @{
- ViewData["title"] = "Om oss";
- Layout = "_Layout";
+  ViewData["title"] = "Om oss"; // The title of the page is set to "Om oss"
+  Layout = "_Layout"; // The layout page for this view is set to "_Layout"
 }
 
 <style>
@@ -25,27 +25,31 @@
 
 <h2>Om sidan</h2>
 <div id="aboutText">
+<!-- The about text is displayed -->
 <p>Välkommen till vår kattwebbplats där du kan registrera dina katter bara för att de är värda det. Om du någonsin har tänkt på att "Min katt är så fantastisk, de förtjänar att registreras någonstans" så är du på rätt plats!</p> 
   <p>För att registrera ditt fluffiga undrar, gå till sidan Katter.</p>
 </div>
-<button id="guessButton">Gissa antalet katter</button>
+<button id="guessButton">Gissa antalet katter</button> <!-- A button is created for guessing the number of cats -->
 <br>
-<div id="message"></div>
+<div id="message"></div> <!-- A div is created for displaying messages -->
 
 @section Scripts {
     <script>
-        var totalCats = @ViewBag.TotalCats; // get the total number of cats from ViewBag
+        var totalCats = @ViewBag.TotalCats; // The total number of cats is retrieved from ViewBag
 
+        // An event listener is added to the guess button. When the button is clicked, a prompt will appear asking the user to guess the number of cats
         document.getElementById('guessButton').addEventListener('click', function() {
-            var guess = prompt('Försåk att gissa hur många katter är registrade hos oss nu:');
+            var guess = prompt('Försök att gissa hur många katter är registrade hos oss nu:');
             if (guess == totalCats) {
+                // If the guess is correct, a message is displayed congratulating the user
                 document.getElementById('message').textContent = 'Grattis! Ditt svar ät helt rätt!';
             } else {
+                // If the guess is incorrect, a confirm dialog is displayed asking the user if they want to guess again
                 if (confirm('Fel svar! Vill du försöka igen? Annars tryck Avbryt of se rätt svar')) {
-                    // if the user clicks "OK", trigger the button click event again
+                    // If the user clicks "OK", the guess button is clicked again
                     document.getElementById('guessButton').click();
                 } else {
-                    // if the user clicks "Cancel", show the correct answer
+                    // If the user clicks "Cancel", the correct answer is displayed
                     document.getElementById('message').textContent = 'Nu är det ' + totalCats + ' katter registrerade hos oss.';
                 }
             }

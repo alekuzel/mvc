@@ -1,10 +1,11 @@
-@model MvcLab.Models.CatsModel;
+@model MvcLab.Models.CatsModel; // Specifies the model for this view, which is CatsModel
 
 @{
- ViewData["title"] = "Katter";
- Layout = "_Layout";
+ ViewData["title"] = "Katter"; // Sets the title of the view to "Katter"
+ Layout = "_Layout"; // Specifies the layout page for this view, which is "_Layout"
 }
 
+<!-- CSS styles for the form and its elements -->
 <style>
      form {
         width: 100%;
@@ -41,29 +42,35 @@
     .btn:hover {
         background-color: #45a049;
     }
-    </style>
+</style>
 
-<h2>Katter</h2>
+<h2>Katter</h2> <!-- Heading of the page -->
 
-<p>Lägga till nya katter här:</p>
+<p>Lägga till nya katter här:</p> <!-- Instruction for the user -->
 
+<!-- form for adding a new cat -->
 <form asp-controller="Home" asp-action="AddCat" method="post">
-    <div asp-validation-summary="ModelOnly"></div>
+    <div asp-validation-summary="ModelOnly"></div> <!-- validation summary for the form -->
     
-        <label asp-for="Name"></label><br>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" style="color:red;"></span><br>
-        <label asp-for="Breed"></label><br>
-        <input asp-for="Breed" class="form-control" />
-        <span asp-validation-for="Breed" style="color:red;"></span><br>
-        <label asp-for="Color"></label><br>
-        <input asp-for="Color" class="form-control" />
-        <span asp-validation-for="Color" style="color:red;"></span><br>
-        <label asp-for="Age"></label><br>
-        <input asp-for="Age" class="form-control" />
-        <span asp-validation-for="Age" style="color:red;"></span><br>
-        <input type="submit" value="Lägg till" class="btn" />
-    
-   
-    
-    </form>
+    <!--  the cat's name -->
+    <label asp-for="Name"></label><br>
+    <input asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name" style="color:red;"></span><br>
+
+    <!-- the cat's breed -->
+    <label asp-for="Breed"></label><br>
+    <input asp-for="Breed" class="form-control" />
+    <span asp-validation-for="Breed" style="color:red;"></span><br>
+
+    <!-- Field for the cat's color -->
+    <label asp-for="Color"></label><br>
+    <input asp-for="Color" class="form-control" />
+    <span asp-validation-for="Color" style="color:red;"></span><br>
+
+    <!-- cat's age -->
+    <label asp-for="Age"></label><br>
+    <input asp-for="Age" class="form-control" />
+    <span asp-validation-for="Age" style="color:red;"></span><br>
+
+    <input type="submit" value="Lägg till" class="btn" />
+</form>
